@@ -42,12 +42,15 @@ addChromlines <- function(chromosomes,xaxis,unit,ind=NULL,cex,op){
 			#Changed by wangweifeng,at 2019-11-22.Drop chrom23 if no observations.
 			if(any(chromosomes==24)){
 			 chromosomes <- 1:24
+			 chrom.names <- c(1:22,"X","Y")
 			}else{
 			 	if(any(chromosomes==23)){
 				chromosomes <- 1:23
+				chrom.names <- c(1:22,"X")
 			 	chrom.mark <- chrom.mark[-length(chrom.mark)]
 				}else{
 				chromosomes <- 1:22
+				chrom.names <- 1:22
 				chrom.mark <- chrom.mark[-length(chrom.mark)]
 				chrom.mark <- chrom.mark[-length(chrom.mark)]
 				}
@@ -67,23 +70,26 @@ addChromlines <- function(chromosomes,xaxis,unit,ind=NULL,cex,op){
 	if(!is.null(op)){
 		arg <- modifyList(arg,op)
 	}
+	par(bty="n")
 	abline(v=chrom.mark[2:(length(chrom.mark)-1)],col=arg$chrom.col,lwd=arg$chrom.lwd,lty=arg$chrom.lty)
 	
 	at <- (chrom.mark[1:nChrom]-1)+(chrom.mark[2:(nChrom+1)]-chrom.mark[1:nChrom])/2
-	chrom.names <- unique(chromosomes)
+	# changed by wangweifeng,at 2019-11-22, give chrom.name at 47,53 line
+	#chrom.names <- unique(chromosomes)
+
 	#Plot half at bottom, half at top:
 	#bot <- seq(1,length(chrom.mark),2)
 	#top <- seq(2,length(chrom.mark),2)
   	#mtext(chrom.names[bot],side=1,line=arg$chrom.line[1],at=at[bot],cex=arg$chrom.cex)
 	#mtext(chrom.names[top],side=3,line=arg$chrom.line[2],at=at[top],cex=arg$chrom.cex)
-	## changed by wangweifeng , at 2019-11-20
-	mtext(chrom.names,side=1,line=arg$chrom.line[1],at=at[seq(length(chrom.mark))-0.5],cex=arg$chrom.cex)
-	
+	## changed by wangweifeng , at 2019-11-20. conver 23 to X, 24 to Y
+	#mtext(chrom.names,side=1,line=arg$chrom.line[1],at=at[seq(length(chrom.mark))-0.5],cex=arg$chrom.cex)
+	text(x = at[seq(length(chrom.mark))-0.5],y=rep(-3,length(chrom.mark)),labels=chrom.names,pos=1,cex=arg$chrom.cex)
 	# added by wangweifeng,at 2019-11-20
 	# plot chromosome strip at the bottom of the figure
 	xleft <- chrom.mark[1:(length(chrom.mark)-1)]
 	xright <- chrom.mark[2:(length(chrom.mark))]
-	par(col = "black")
+	par(col = "black",bty="n")
 	rect(xleft,c(rep(-3,length(chrom.mark)-1)),xright,c(rep(0,length(chrom.mark)-1)),
 	col = rep(c("black","white"),length(chrom.mark)-1))
 	

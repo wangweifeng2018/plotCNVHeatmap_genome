@@ -137,16 +137,21 @@ genomeHeat <- function(segments,upper.lim,lower.lim,pos.unit,sampleID,layout,...
 		par(fig=fig.t,new=new,oma=c(0,0,0.5,0),mar=op$mar)
 		
     #Empty plot with correct dimensions:
-	  ## change by wangweifeng,at 2019-11-20 ylim = 0 changed ylim = -3
-	  plot(1,1,type="n",ylim=c(-3,nSample),ylab=op$ylab,xlab=op$xlab,xlim=op$xlim,
-		 xaxs="i",yaxt="n",xaxt="n",yaxs="i",cex.lab=0.9,mgp=op$mgp,main="")
-		#Let background be black to avoid white parts in arms without probes:
-    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = op$colors[2])
+	  ## change by wangweifeng,at 2019-11-20 ylim = 0,nSample changed ylim = -3,nSample
+	  par(bty="n")
+	  #plot(1,1,type="n",ylim=c(-20,nSample),ylab=op$ylab,xlab=op$xlab,xlim=op$xlim,axes=FALSE,
+      	#	 xaxs="r",yaxt="n",xaxt="n",yaxs="r",cex.lab=0.9,mgp=op$mgp,main="")
+	  plot(1,1,type="n",ylim=c(-20,nSample),ylab=op$ylab,xlab=op$xlab,xlim=op$xlim,axes=FALSE,cex.lab=0.9,mgp=op$mgp,main="")
+    #Let background be black to avoid white parts in arms without probes:
+    #rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], bty = "n",col = op$colors[2])
+    par(bty="n")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], bty = "n",col = "white")
 
  
     
-   	#main title for this plot
-    title(main=op$main[t],line=op$main.line,cex.main=op$cex.main)
+    #main title for this plot
+    # changed by wangweifeng,at 2019-11-22,Do not show this default title,It's too urgly
+    #title(main=op$main[t],line=op$main.line,cex.main=op$cex.main)
     
     #Get colorsetup for these limits:
     cs <- colorSetup(upper.lim=upper.lim[t],lower.lim=lower.lim[t],op=op)
@@ -179,10 +184,24 @@ genomeHeat <- function(segments,upper.lim,lower.lim,pos.unit,sampleID,layout,...
     #Separate chromosomes by vertical lines:
   
     addChromlines(chromosomes=segments[,2],xaxis="pos",unit=pos.unit,cex=op$cex.chrom,op=op)
-	  #Box:
-	  abline(v=op$xlim)
-	  abline(h=c(0,nSample))
-
+	  #Box:changed by wangweifeng,at 2019-11-25
+	  print(op$xlim[1])
+	  lines(x=c(op$xlim[1],op$xlim[1]),y=c(0,nSample),type="l")
+	  lines(x=c(op$xlim[2],op$xlim[2]),y=c(0,nSample),type="l")
+	  lines(x=c(op$xlim[1],op$xlim[2]),y=c(nSample,nSample),type="l")
+	  
+	  #abline(v=op$xlim)
+	  #abline(h=c(0,nSample))
+    # Added by wangweifeng,at 2019-11-22
+    # Legend
+    colfunc <- colorRampPalette(c("dodgerblue", "white","red"))
+    rect(c(300:800),rep(-13,500),c(301:801),rep(-10,500),col=colfunc(500),cex=1,border=NA)
+    text(x=c(300,550,800),y=rep(-14,3),pos=1,labels=c(lower.lim,0,upper.lim),cex=1)
+    #bt<-seq(10,20,by=0.02)
+    #tp<-seq(11,21,by=0.02)
+    #rect(rep(op$xlim+50,500),bt,rep(op$xlim+150,500),tp,col=colfunc(500),cex=3,border=NA)
+    #text(x=rep(op$xlim+150,3),y=c(10,15,20),pos=4,labels=c(lower.lim,0,upper.lim),cex=1) 
+    
     #Get new page, or update column/row:
 		if(t%%(nr*nc)==0){
 			#Start new plot page (prompted by user)
