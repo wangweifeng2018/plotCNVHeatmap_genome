@@ -1,7 +1,7 @@
 
 #改写R 包 copynumber 里面的plotHeatmap函数，实现以下效果
 ![CNV热图](https://github.com/wangweifeng2018/plotCNVHeatmap_genome/blob/master/CNV_heatmap.png)
-<img src="https://github.com/wangweifeng2018/plotCNVHeatmap_genome/blob/master/CNV_heatmap.png" width="150" height="150" alt="CNV热图"/>
+<img src="https://github.com/wangweifeng2018/plotCNVHeatmap_genome/blob/master/CNV_heatmap.png" width="250" height="250" alt="CNV热图"/>
 #Step1. 下载 Bioconductor-copynumber 源码文件
 ```
 $wget http://www.bioconductor.org/packages/release/bioc/src/contrib/copynumber_1.26.0.tar.gz
