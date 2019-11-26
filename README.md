@@ -1,11 +1,10 @@
 #改写R 包 copynumber 里面的plotHeatmap函数，实现以下效果
 ![CNV热图](https://github.com/wangweifeng2018/plotCNVHeatmap_genome/blob/master/CNV_heatmap.png)
 
-#在底部添加染色体信息
+#修改addChromlines.rw文件在底部添加染色体信息
 -----------------
         # changed by wangweifeng,at 2019-11-22, give chrom.name at 47,53 line
         #chrom.names <- unique(chromosomes)
-
         #Plot half at bottom, half at top:
         #bot <- seq(1,length(chrom.mark),2)
         #top <- seq(2,length(chrom.mark),2)
