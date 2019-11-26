@@ -31,7 +31,7 @@ $cd copynumber/R/
  ```
 #修改 plotHeatmap.r 文件添加Legend
 ------------
-在181行后面添加如下代码
+在Row 181 后面添加如下代码
 ```
     # Legend
     colfunc <- colorRampPalette(c("dodgerblue", "white","red"))
