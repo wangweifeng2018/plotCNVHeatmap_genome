@@ -29,6 +29,24 @@ $cd copynumber/R/
         par(col = "black",bty="n")
         rect(xleft,c(rep(-3,length(chrom.mark)-1)),xright,c(rep(0,length(chrom.mark)-1)),col = rep(c("black","white"),length(chrom.mark)-1))
  ```
+ (3) 源码只支持去掉Y染色体展示，不支持X,Y同时去掉.更改 Row 41-46为如下，使之支持X,Y都不展示。
+ ```
+ if(any(chromosomes==24)){
+                         chromosomes <- 1:24
+                         chrom.names <- c(1:22,"X","Y")
+                        }else{
+                                if(any(chromosomes==23)){
+                                chromosomes <- 1:23
+                                chrom.names <- c(1:22,"X")
+                                chrom.mark <- chrom.mark[-length(chrom.mark)]
+                                }else{
+                                chromosomes <- 1:22
+                                chrom.names <- 1:22
+                                chrom.mark <- chrom.mark[-length(chrom.mark)]
+                                chrom.mark <- chrom.mark[-length(chrom.mark)]
+                                }   
+                        }  
+ ```
 #修改 plotHeatmap.r 文件添加Legend
 ------------
 在Row 181 后面添加如下代码
