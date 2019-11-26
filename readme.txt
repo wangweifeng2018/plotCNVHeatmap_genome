@@ -1,2 +1,1 @@
-<!DOCTYPE html>
-<h1>This is a R program plot copy number variant on hg19 coordinate system.</h1>
+#改写R 包 copynumber 里面的plotHeatmap函数，实现以下效果
