@@ -3,11 +3,14 @@
 ![CNV热图](https://github.com/wangweifeng2018/plotCNVHeatmap_genome/blob/master/CNV_heatmap.png)
 
 #Step1. 下载 Bioconductor-copynumber 源码文件，
+-----------------
 ```
 $wget http://www.bioconductor.org/packages/release/bioc/src/contrib/copynumber_1.26.0.tar.gz
 $tar -zxvf copynumber_1.26.0.tar.gz
 $cd copynumber/R/
 ```
+#Step2.修改源码文件
+-----------------
 #修改addChromlines.r文件在底部添加染色体信息
 -----------------
 (1)注释掉 row 67-69，将所有染色体标签移到热图下方。
@@ -26,3 +29,12 @@ $cd copynumber/R/
         par(col = "black",bty="n")
         rect(xleft,c(rep(-3,length(chrom.mark)-1)),xright,c(rep(0,length(chrom.mark)-1)),col = rep(c("black","white"),length(chrom.mark)-1))
  ```
+#修改 plotHeatmap.r 文件添加Legend
+------------
+在181行后面添加如下代码
+```
+    # Legend
+    colfunc <- colorRampPalette(c("dodgerblue", "white","red"))
+    rect(c(300:800),rep(-13,500),c(301:801),rep(-10,500),col=colfunc(500),cex=1,border=NA)
+    text(x=c(300,550,800),y=rep(-14,3),pos=1,labels=c(lower.lim,0,upper.lim),cex=1)
+```
