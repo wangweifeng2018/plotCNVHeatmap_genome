@@ -62,5 +62,26 @@ $cd copynumber/R/
     text(x=c(300,550,800),y=rep(-14,3),pos=1,labels=c(lower.lim,0,upper.lim),cex=1)
 ```
 
-#Step3. 使用
-
+#Step3. 使用修改后脚本绘图
+-----------
+（1） load 参考文件等
+```
+load("yourdir_path/R/sysdata.rda")
+```
+（2）source 修改后R脚本
+```
+for (f in list.files(path="youdir_path/R/",pattern="*.r$")){
+        source_f = paste("yourdir_path/",f,sep = "") 
+        source(source_f)
+}
+```
+(3)plot
+```
+png(paste($your_outdir,"CNV_heatmap.png",sep = "/"),width=4000,height=3000,res=400)
+plotHeatmap(segments=seg,lower.lim=-0.5
+                ,upper.lim=0.5
+                ,sample.labels=F
+                ,xaxis="pos"
+                ,colors=c("dodgerblue","white","red"))
+dev.off()
+```
