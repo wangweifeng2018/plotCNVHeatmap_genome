@@ -18,14 +18,11 @@ $cd copynumber/R/
         #mtext(chrom.names[bot],side=1,line=arg$chrom.line[1],at=at[bot],cex=arg$chrom.cex)
         text(x = at[seq(length(chrom.mark))-0.5],y=rep(-3,length(chrom.mark)),labels=chrom.names,pos=1,cex=arg$chrom.cex)
  ```
- (2)紧接着添加染色体条带。
+ (2)row 70 后面紧接着添加如下代码，在热图绘制染色体条带。
  ```
-        text(x = at[seq(length(chrom.mark))-0.5],y=rep(-3,length(chrom.mark)),labels=chrom.names,pos=1,cex=arg$chrom.cex)
-        # added by wangweifeng,at 2019-11-20
         # plot chromosome strip at the bottom of the figure
         xleft <- chrom.mark[1:(length(chrom.mark)-1)]
         xright <- chrom.mark[2:(length(chrom.mark))]
         par(col = "black",bty="n")
-        rect(xleft,c(rep(-3,length(chrom.mark)-1)),xright,c(rep(0,length(chrom.mark)-1)),
-        col = rep(c("black","white"),length(chrom.mark)-1))
+        rect(xleft,c(rep(-3,length(chrom.mark)-1)),xright,c(rep(0,length(chrom.mark)-1)),col = rep(c("black","white"),length(chrom.mark)-1))
  ```
