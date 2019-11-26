@@ -11,7 +11,7 @@ $cd copynumber/R/
 ```
 #Step2.修改源码文件
 -----------------
-#修改addChromlines.r文件在底部添加染色体信息
+##修改addChromlines.r文件在底部添加染色体信息
 -----------------
 (1) 源码只支持去掉Y染色体展示，不支持X,Y同时去掉.更改 Row 41-46为如下，使之支持X,Y都不展示,并重新定义chrom.names。
  ```
@@ -52,7 +52,7 @@ $cd copynumber/R/
         rect(xleft,c(rep(-3,length(chrom.mark)-1)),xright,c(rep(0,length(chrom.mark)-1)),col = rep(c("black","white"),length(chrom.mark)-1))
  ```
  
-#修改 plotHeatmap.r 文件添加Legend
+##修改 plotHeatmap.r 文件添加Legend
 ------------
 在Row 181 后面添加如下代码
 ```
@@ -61,3 +61,6 @@ $cd copynumber/R/
     rect(c(300:800),rep(-13,500),c(301:801),rep(-10,500),col=colfunc(500),cex=1,border=NA)
     text(x=c(300,550,800),y=rep(-14,3),pos=1,labels=c(lower.lim,0,upper.lim),cex=1)
 ```
+
+#Step3. 使用
+
