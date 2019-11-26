@@ -64,7 +64,7 @@ $cd copynumber/R/
 
 #Step3. 使用修改后脚本绘图
 -----------
-（1） load 参考文件等
+（1）load 参考文件等
 ```
 load("yourdir_path/R/sysdata.rda")
 ```
@@ -75,7 +75,7 @@ for (f in list.files(path="youdir_path/R/",pattern="*.r$")){
         source(source_f)
 }
 ```
-(3)plot
+(3) plot
 ```
 png(paste($your_outdir,"CNV_heatmap.png",sep = "/"),width=4000,height=3000,res=400)
 plotHeatmap(segments=seg,lower.lim=-0.5
