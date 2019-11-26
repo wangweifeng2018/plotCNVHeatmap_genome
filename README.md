@@ -10,15 +10,15 @@ $cd copynumber/R/
 ```
 #修改addChromlines.r文件在底部添加染色体信息
 -----------------
-(1)注释掉 row 67,69，改为如下：
-```
-
+(1)注释掉 row 67-69，将所有染色体标签移到热图下方。
 ```
         #Plot half at bottom, half at top:
         #bot <- seq(1,length(chrom.mark),2)
         #top <- seq(2,length(chrom.mark),2)
         #mtext(chrom.names[bot],side=1,line=arg$chrom.line[1],at=at[bot],cex=arg$chrom.cex)
-        #mtext(chrom.names,side=1,line=arg$chrom.line[1],at=at[seq(length(chrom.mark))-0.5],cex=arg$chrom.cex)
+        text(x = at[seq(length(chrom.mark))-0.5],y=rep(-3,length(chrom.mark)),labels=chrom.names,pos=1,cex=arg$chrom.cex)
+ ```
+ (2)紧接着添加染色体条带。
  ```
         text(x = at[seq(length(chrom.mark))-0.5],y=rep(-3,length(chrom.mark)),labels=chrom.names,pos=1,cex=arg$chrom.cex)
         # added by wangweifeng,at 2019-11-20
